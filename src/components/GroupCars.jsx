@@ -1,7 +1,8 @@
 import { useGroup } from "../context/LinkContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function GroupCars({ group }) {
+  const navigate = useNavigate();
   const { deleteGroup } = useGroup();
 
   const openLinksGroup = (event) => {
@@ -16,35 +17,41 @@ function GroupCars({ group }) {
   };
 
   return (
-    <div
-      onClick={(event) => openLinksGroup(event)}
-      className="bg-zinc-800 max-w-md w-full p-10 rounded-md cursor-pointer"
-    >
+    <div className="bg-zinc-800 w-full p-2 rounded-md">
       <header>
-        <h1 className="text-2xl font-bold">{group.group_name}</h1>
-        <div className="flex gap-x-3 items-center py-3">
-          <Link
-            to={`/links/${group.group_id}`}
-            className="bg-blue-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md"
-            onClick={(event) => stopButtonClick(event)}
+        <div className="flex flex-row items-center h-10">
+          <div
+            className="flex-auto h-11 flex items-center cursor-pointer"
+            onClick={() => navigate(`/links/${group.group_id}`)}
           >
-            Open
-          </Link>
-          <Link
-            to={`/group/${group.group_id}`}
-            onClick={(event) => stopButtonClick(event)}
-          >
-            Edit
-          </Link>
-          <button
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
-            onClick={(event) => {
-              deleteGroup(group.group_id);
-              stopButtonClick(event);
-            }}
-          >
-            Delete
-          </button>
+            <div className="flex pl-7 ">
+              <strong>{group.group_name}</strong>
+            </div>
+          </div>
+          <div className="flex flex-row pr-7">
+            <button
+              className="bg-blue-500 hover:bg-yellow-600 text-white p-1 rounded-md"
+              onClick={(event) => openLinksGroup(event)}
+            >
+              Open
+            </button>
+            <button>
+              <Link
+                className="bg-blue-500 hover:bg-yellow-600 text-white p-1 rounded-md m-1"
+                to={`/group/${group.group_id}`}
+              >
+                Edit
+              </Link>
+            </button>
+            <button
+              className="bg-red-500 hover:bg-red-600 text-white p-1 rounded-md"
+              onClick={(event) => {
+                deleteGroup(group.group_id);
+              }}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </header>
     </div>

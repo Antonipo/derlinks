@@ -12,6 +12,9 @@ function LinksPage() {
   if (links.length == 0)
     return (
       <div>
+        <div>
+          <Link to={"/group"}>Go back</Link>
+        </div>
         <h1>No Links</h1>
         <li>
           <Link to={`/add-link/${params.id}`}>Add link</Link>
@@ -22,7 +25,7 @@ function LinksPage() {
   return (
     <div>
       <div>
-        <Link to={'/group'}>Go back</Link>       
+        <Link to={"/group"}>Go back</Link>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {links.map((links) => (

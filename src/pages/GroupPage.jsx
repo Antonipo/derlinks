@@ -20,7 +20,7 @@ function GroupPage() {
     );
   return (
     <div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
+      <div className="flex flex-col gap-2">
         {group.map((group) => (
           <GroupCars group={group} key={group.group_id} />
         ))}
