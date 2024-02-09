@@ -12,7 +12,8 @@ function LinkFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     data.group_id = Number(params.id);
     await createLink(data);
-    navigate(`/links/${params.id}`);
+    //navigate(`/links/${params.id}`);
+    navigate('/group');
   });
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">

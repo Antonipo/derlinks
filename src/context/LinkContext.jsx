@@ -86,13 +86,14 @@ export function LinkProvider({ children }) {
     }
   };
 
-  const deleteLink = async(id) =>{
+  const deleteLink = async(id,group_id=null) =>{
     try {
       const resDelete = await deleteLinkApi(id);
-      if (resDelete.status == 204)
-        setLinks(links.filter((links) => links.link_id != id));
+      if (resDelete.status == 204) {
+        getGroups();
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   return (
