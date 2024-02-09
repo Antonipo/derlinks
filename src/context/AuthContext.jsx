@@ -27,6 +27,8 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      const cookies = Cookies.get()
+      Cookies.set('token',cookies.toString())
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setErrors(error.response.data);
@@ -40,6 +42,8 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
+      const cookies = Cookies.get()
+      Cookies.set('token',cookies.toString())
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setErrors(error.response.data);
