@@ -66,13 +66,13 @@ function GroupCars({ group }) {
             </button>
           </div>
         </div>
-        <div id={group.group_id} className="hidden">
+        <div id={group.group_id} className="hidden pl-11 pr-7">
           {group.links.map((links) => (
             <ul className="pl-0 list-disc " key={links.link_id}>
               <LinksCars links={links} group_id={group.group_id}/>
             </ul>
           ))}
-          <li className="pl-11 pt-1 cursor-pointer">
+          <li className="pl-0 pt-1 cursor-pointer">
             <a
               onClick={() => {
                 navigate(`/add-link/${group.group_id}`);
