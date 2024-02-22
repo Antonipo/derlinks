@@ -8,6 +8,7 @@ import {
   createLinkApi,
   getLinksApi,
   deleteLinkApi,
+  updateLinkApi,
 } from "../api/link";
 
 const LinkContext = createContext();
@@ -77,6 +78,17 @@ export function LinkProvider({ children }) {
     }
   };
 
+  const updateLink = async (id, link) => {
+    try {
+      const resUpdate = await updateLinkApi(id, link);
+      if (resUpdate.status == 200) {
+        getGroups();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getLinks = async (id) => {
     try {
       const resLinks = await getLinksApi(id);
@@ -86,7 +98,7 @@ export function LinkProvider({ children }) {
     }
   };
 
-  const deleteLink = async(id,group_id=null) =>{
+  const deleteLink = async (id, group_id = null) => {
     try {
       const resDelete = await deleteLinkApi(id);
       if (resDelete.status == 204) {
@@ -95,7 +107,8 @@ export function LinkProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
   return (
     <LinkContext.Provider
       value={{
@@ -108,6 +121,7 @@ export function LinkProvider({ children }) {
         links,
         setLinks,
         getLinks,
+        updateLink,
         createLink,
         deleteLink,
       }}

@@ -11,3 +11,4 @@ export const updateGroupApi = (id, group) => axios.put(`/group/${id}`, group);
 export const createLinkApi = (link) => axios.post("/link", link);
 export const getLinksApi = (id) => axios.get(`/links/${id}`);
 export const deleteLinkApi = (id) => axios.delete(`/link/${id}`)
+export const updateLinkApi = (id,link) => axios.put(`/link/${id}`,link)
